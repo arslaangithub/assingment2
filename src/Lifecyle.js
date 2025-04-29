@@ -1,50 +1,49 @@
 import React, { Component } from "react";
 
-class Life extends Component {
-  constructor() {
-    super();
-    this.state = { count: 0 };
-    console.log("constructor");
-  }
+class X extends Component {
+    constructor(props) {
+        super(props);
+        this.state = { count: 1 };
+        console.log("Initialized");
+    }
 
-  static getDerivedStateFromProps() {
-    console.log("getDerivedStateFromProps");
-    return null;
-  }
+    static getDerivedStateFromProps(props, state) {
+        console.log("synced");
+        return null;
+    }
 
-  componentDidMount() {
-    console.log("componentDidMount");
-  }
+    shouldComponentUpdate(nextProps, nextState) {
+        console.log("checked");
+        return true;
+    }
 
-  shouldComponentUpdate() {
-    console.log("shouldComponentUpdate");
-    return true;
-  }
+    componentDidMount() {
+        console.log("Mounted");
+    }
 
-  getSnapshotBeforeUpdate() {
-    console.log("getSnapshotBeforeUpdate");
-    return null;
-  }
+    getSnapshotBeforeUpdate(prevProps, prevState) {
+        console.log("captured");
+        return null;
+    }
 
-  componentDidUpdate() {
-    console.log("componentDidUpdate");
-  }
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        console.log("Updated");
+    }
 
-  componentWillUnmount() {
-    console.log("componentWillUnmount");
-  }
+    componentWillUnmount() {
+        console.log("Bye!!");
+    }
 
-  render() {
-    console.log("render");
-    return (
-      <div>
-        <p>{this.state.count}</p>
-        <button onClick={() => this.setState({ count: this.state.count + 1 })}>
-          +
-        </button>
-      </div>
-    );
-  }
+    render() {
+        return (
+            <>
+                <h1>count: {this.state.count}</h1>
+                <button onClick={() => this.setState({ count: this.state.count + 1 })}>
+                    Inc
+                </button>
+            </>
+        );
+    }
 }
 
-export default Life;
+export default X;
